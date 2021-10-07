@@ -1,0 +1,8 @@
+hooks:
+  build:
+    cmd: 'pip3 install django'
+
+daemons:
+  app:
+    run:
+      cmd: 'python3 manage.py runserver'
