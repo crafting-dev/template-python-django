@@ -1,8 +1,8 @@
 hooks:
   build:
-    cmd: 'pip3 install django'
+    cmd: ./sandbox.sh
 
 daemons:
   app:
     run:
-      cmd: 'python3 manage.py runserver'
+      cmd: python3 manage.py runserver 0:3000
