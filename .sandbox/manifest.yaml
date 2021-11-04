@@ -5,4 +5,4 @@ hooks:
 daemons:
   app:
     run:
-      cmd: python3 manage.py runserver 0:3000
+      cmd: python3 manage.py runserver 0.0.0.0:3000
