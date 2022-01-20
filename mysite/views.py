@@ -3,8 +3,11 @@ from django.http import JsonResponse
 from datetime import datetime
 
 def ping(request):
+  ping = request.GET.get('ping')
+  if ping == "":
+    ping = 'To ping, or not to ping; that is the question.'
   pong = {
-    'ping': request.GET.get('ping', 'To ping, or not to ping; that is the question.'),
+    'ping': ping,
     'received_at': datetime.utcnow()
   }
 

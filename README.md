@@ -1,6 +1,6 @@
 # Python/Django with MySQL template for Crafting Sandbox
 
-This is a Python/[Django](https://www.djangoproject.com/) with MySQL template, configured for quick development setup in [Crafting Sandbox](https://crafting.readme.io/docs).
+This is a Python/[Django](https://www.djangoproject.com/) with MySQL template, configured for quick development setup in [Crafting Sandbox](https://docs.sandboxes.cloud/docs).
 
 ## Specifications
 
@@ -47,37 +47,38 @@ To run the app:
 python3 manage.py runserver 0.0.0.0:3000
 ```
 
-## App configuration
+## App Definition
 
-The following [App configuration](https://crafting.readme.io/docs/app-spec) was used to create this template:
+The following [App Definition](https://docs.sandboxes.cloud/docs/app-definition) was used to create this template:
 
 ```yaml
 endpoints:
-- http:
-  routes:
-  - backend:
-      port: http
-      target: python-django
-    path_prefix: /
-name: app
-services:
-- description: Python/Django template
-name: python-django
-workspace:
-  checkouts:
-  - path: src/template-python-django
-    repo:
-      git: https://github.com/crafting-dev/template-python-django.git
+- name: api
+  http:
+    routes:
+    - pathPrefix: "/"
+      backend:
+        target: python-django
+        port: api
+    authProxy:
+      disabled: true
+workspaces:
+- name: python-django
+  description: Template backend using Python/Django
   ports:
-  - name: http
+  - name: api
     port: 3000
     protocol: HTTP/TCP
-- managed_service:
+  checkouts:
+  - path: backend
+    repo:
+      git: https://github.com/crafting-dev/template-python-django
+dependencies:
+- name: mysql
+  serviceType: mysql
+  version: '8'
   properties:
     database: superhero
     password: batman
     username: brucewayne
-  service_type: mysql
-  version: "8"
-name: mysql
 ```
