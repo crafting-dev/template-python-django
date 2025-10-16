@@ -47,7 +47,7 @@ DATABASES = {
 
 To run the app:
 ```bash
-python3 manage.py runserver 0.0.0.0:3000
+uv run manage.py runserver 0.0.0.0:3000
 ```
 
 ## App Definition

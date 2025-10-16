@@ -1,0 +1,34 @@
+[project]
+name = "mysite"
+version = "0.1.0"
+description = "Python/Django with MySQL template"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "django>=5.1.0,<6.0.0",
+    "PyMySQL>=1.1.0",
+    "cryptography>=42.0.0",
+    "django-cors-headers>=4.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "flake8",
+    "isort",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.django]
+settings_module = "mysite.settings"

@@ -1,24 +1,17 @@
 #!/bin/bash
 
 # ============================================
-# Configure sandbox for quick workspace setup.
+# Configure sandbox for quick workspace setup using uv.
 # ============================================
 
-echo '== Update system =='
-sudo apt-get update
+echo '== Install uv =='
+curl -LsSf https://astral.sh/uv/install.sh | sh
+export PATH="$HOME/.cargo/bin:$PATH"
 
-echo '== Install django =='
-pip3 install django
-
-echo '== Install mysql client =='
-sudo apt-get install python3-dev build-essential -y
-sudo apt-get install libmysqlclient-dev default-libmysqlclient-dev -y
-pip3 install mysqlclient
-
-echo '== Install django-cors-headers =='
-pip3 install django-cors-headers
+echo '== Install Python dependencies with uv =='
+uv sync
 
 echo '== Apply unapplied migration(s) =='
-python3 manage.py migrate
+uv run python manage.py migrate
 
 echo '== Done! == '
