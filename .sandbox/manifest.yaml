@@ -5,4 +5,6 @@ hooks:
 daemons:
   app:
     run:
-      cmd: uv run manage.py runserver 0.0.0.0:3000
+      cmd: |
+        . "$HOME/.local/bin/env"
+        uv run manage.py runserver 0.0.0.0:3000
